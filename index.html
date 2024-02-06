@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/fontawesome.min.css">
+    <title>Document</title>
+</head>
+
+<style>
+    .helper {
+        width: 100%;
+        height: 100%;
+        border: 1px solid blue;
+        /* margin: 10px auto; */
+        position: absolute;
+        background-color: aquamarine;
+        /* left: 50%; */
+    }
+    .helper .resizehelper{  
+        width: 7px;
+        height: 7px;
+        border: 1px solid blue;
+        background-color: rgb(243, 243, 243);
+        position: absolute;
+        border-radius: 50%;
+    }
+    .helper .resizehelper.top{  top: 0;right: 50%;transform: translate(-50%,-50%);cursor: n-resize;}
+    .helper .resizehelper.left{ top: 50%;left: 0;transform: translate(-50%,-50%);cursor: e-resize;}
+    .helper .resizehelper.right{top: 50%;right: 0;transform: translate(50%,-50%);cursor: e-resize;}
+    .helper .resizehelper.bottom{bottom: 0;right: 50%;transform: translate(-50%,50%);cursor: n-resize;}
+    
+</style>
+<body>
+    
+    <head>
+        <h1 data-resize>Hello</h1>
+        <p data-resize>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque repellendus porro necessitatibus, cupiditate iste beatae itaque natus tenetur alias odio adipisci vitae consequuntur, eum at officia incidunt? Voluptatibus, ad doloremque.</p>
+    </head>
+
+    <div class="">
+        <button data-resize>Button</button>
+        
+    </div>
+
+    <div class="">
+        <a href="" data-resize>my link</a>
+    </div>
+    <div class="" data-resize>
+
+        <input type="text" data-resize>
+    </div>
+
+    <img src="./" alt="My Image" data-resize>
+
+
+    <div class="helper" id="helper">
+        <div class="resizehelper top"></div>
+        <div class="resizehelper left"></div>
+        <div class="resizehelper right"></div>
+        <div class="resizehelper bottom"></div>
+    </div>
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/fontawesome.min.js"></script>
+
+
+    <script>
+        $('[data-resize]').off().on('click', (ev)=>{
+            ev.stopImmediatePropagation();
+            ev.preventDefault();
+            let obj = $(ev.currentTarget);
+            let ofset = obj.offset()
+            let width = obj.outerWidth() + 'px';
+            let height = obj.outerHeight() + 'px';
+            debugger
+            console.log("OFF THE SET ***",ofset)
+            $('#helper').css({left:ofset.left, top:ofset.top,height,width})
+        })
+    </script>
+</body>
+</html>
